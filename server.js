@@ -38,7 +38,7 @@ mongoose.connection.on("error", (err) => {
 
 // Default route
 app.get("/", (req, res) => {
-  res.send("Welcome to the Doctor Appointment App");
+  res.send("Welcome to the university management App");
 });
 
 // Routes
