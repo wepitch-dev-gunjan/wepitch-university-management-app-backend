@@ -1,12 +1,8 @@
 const { Schema, model } = require("mongoose");
 
-const doctorSchema = new Schema(
+const universitySchema = new Schema(
   {
-    firstName: {
-      type: String,
-      required: true
-    },
-    lastName: {
+    name: {
       type: String,
       required: true
     },
@@ -23,81 +19,33 @@ const doctorSchema = new Schema(
       type: String,
       required: true
     },
-    specialization: {
+    address: {
       type: String,
       required: true
     },
-    qualifications: {
-      type: [String],
-      required: true
-    },
-    experience: {
-      type: Number, // Number of years
-      required: true
-    },
-    clinicAddress: {
-      type: String,
-      required: true
-    },
-    hospitalAffiliations: {
-      type: [String],
-      required: true
-    },
-    consultationFees: {
-      type: Number,
-      required: true
-    },
-    availableSlots: [
-      {
-        day: {
-          type: String,
-          required: true
-        },
-        startTime: {
-          type: String,
-          required: true
-        },
-        endTime: {
-          type: String,
-          required: true
-        }
-      }
-    ],
     profilePicture: {
       type: String
     },
+    departments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Department'
+      }
+    ],
     ratings: {
       type: Number,
       default: 0
     },
     reviews: [
       {
-        patientId: {
-          type: Schema.Types.ObjectId,
-          ref: 'User',
-          required: true
-        },
-        review: {
-          type: String,
-          required: true
-        },
-        rating: {
-          type: Number,
-          required: true
-        },
-        createdAt: {
-          type: Date,
-          default: Date.now
-        }
+        type: Schema.Types.ObjectId,
+        ref: 'Review'
       }
     ]
   },
   {
     timestamps: true
-  },
-  {
-    strict: false
   }
 );
 
-module.exports = model("Doctor", doctorSchema);
+module.exports = model("University", universitySchema);
